@@ -21,7 +21,7 @@ export const SendTransaction: FC = () => {
         try {
             const destAddress = Keypair.generate().publicKey;
             // anything below this will fail, as this would be below the rent-exemption rate.
-            const amount = 1_000_000;
+            const amount = 2_000_000;
 
             console.log(amount);
 
@@ -56,7 +56,7 @@ export const SendTransaction: FC = () => {
                     Wallet not connected
                 </div>
                 <span className="block group-disabled:hidden" > 
-                    Send Transaction 
+                    Create New Card With Your Solana
                 </span>
             </button>
         </div>
