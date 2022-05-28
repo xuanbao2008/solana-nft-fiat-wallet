@@ -83,6 +83,10 @@ export const HomeView: FC = ({ }) => {
     setOpen(false);
   };
 
+  const connectToWallet = () => {
+    console.log("connect to wallet")
+  };
+
   if (wallet.publicKey){
     return (
       <div className="md:hero mx-auto p-4">
@@ -160,82 +164,44 @@ export const HomeView: FC = ({ }) => {
       </div>
     );
   }
-  else {
-    return (
-      <div className="md:hero mx-auto p-4">
-        <div className="md:hero-content flex flex-col">
-          <h1 className="text-center text-5xl md:pl-12 font-bold text-transparent bg-clip-text bg-gradient-to-tr from-[#9945FF] to-[#14F195]">
-            Solana  Fiat  <span className='text-sm font-normal align-top text-slate-700'></span>
-          </h1>
-          <h4 className="md:w-full text-center text-slate-300 my-2">
-            <p>Simply the fastdddddddest way to get to pay with soest way to get to pay with soto pay with solana blockchain</p>
-            <p>Pay anywhere and anytime with solana </p>
-          </h4>
-  
-        <Card sx={{ maxWidth: 345 }} >
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image="static/solona_visa.png"
-            alt="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Solana Credit Card
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-             Create a credit card with instant time
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary"  onClick={handleOpen}>
-            Create New Card
-          </Button>
-  
-          <Modal
-          hideBackdrop
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="child-modal-title"
-          aria-describedby="child-modal-description"
-        >
-          <Box sx={{ ...style, width: 300 }}>
-            <h2 id="child-modal-title">Input Solona to convert to USD</h2>
-            <TextField 
-            id="outlined-basic" label="Input sol want to convert" variant="outlined" inputRef={valueRef} type="number"/>
-            {/* <TextField id="filled-basic" label="Estimate USD" variant="filled" />
-            <p />
-             */}
-              <h4 className="md:w-full text-center text-black my-2"> 
-             Price at {time} as Binace exchange</h4>
-             <h4 className="md:w-full text-center text-black my-2"> 
-             SOL : UST  {solPrice} </h4>
-             <h4 className="md:w-full text-center text-black my-2">
-               </h4>
-            <p>estimate to usd</p>
-             <h4 className="md:w-full text-center text-black my-2">
-             </h4>
-            <p>estimate to usd</p>
-          
-            {/* <Button onClick={handleClose}>Convert</Button> */}
-            <SendTransaction inputValue={valueRef}/>
-          </Box>
-        </Modal>
-  
-          {/* <SendTransaction /> */}
-        </CardActions>
-      </Card>
-          <div className="text-center">
-            {/* <RequestAirdrop />
-            {wallet.publicKey && <p>Public Key: {wallet.publicKey.toBase58()}</p>}
-            {wallet && <p>SOL Balance: {(balance || 0).toLocaleString()}</p>} */}
-            
-          </div>
-        </div>
+
+  return (
+    <div className="md:hero mx-auto p-4">
+      <div className="md:hero-content flex flex-col">
+        <h1 className="text-center text-5xl md:pl-12 font-bold text-transparent bg-clip-text bg-gradient-to-tr from-[#9945FF] to-[#14F195]">
+          Solana  Fiat  <span className='text-sm font-normal align-top text-slate-700'></span>
+        </h1>
+        <h4 className="md:w-full text-center text-slate-300 my-2">
+          <p>Simply the fastdddddddest way to get to pay with soest way to get to pay with soto pay with solana blockchain</p>
+          <p>Pay anywhere and anytime with solana </p>
+        </h4>
+
+      <Card sx={{ maxWidth: 345 }} >
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="140"
+          image="static/solona_visa.png"
+          alt="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Solana Credit Card
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Create a credit card with instant time
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary"  onClick={connectToWallet}>
+          Create New Card
+        </Button>
+      </CardActions>
+    </Card>
       </div>
-    );
-  }
-  
+    </div>
+  );
+
+
 };
