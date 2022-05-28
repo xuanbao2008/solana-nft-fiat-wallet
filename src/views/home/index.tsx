@@ -45,6 +45,8 @@ export const HomeView: FC = ({ }) => {
   const balance = useUserSOLBalanceStore((s) => s.balance)
   const { getUserSOLBalance } = useUserSOLBalanceStore()
 
+  const [inputValue, setInputValue] = useState(null);
+
   useEffect(() => {
     if (wallet.publicKey) {
       console.log(wallet.publicKey.toBase58())
@@ -59,6 +61,11 @@ export const HomeView: FC = ({ }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    setInputValue(event.target.value);
+  }
 
   return (
 
@@ -104,7 +111,7 @@ export const HomeView: FC = ({ }) => {
         <Box sx={{ ...style, width: 300 }}>
           <h2 id="child-modal-title">Input Solona to convert to USD</h2>
           <TextField 
-          id="outlined-basic" label="Input your sol want to convert" variant="outlined" />
+          id="outlined-basic" label="Input your sol want to convert" variant="outlined" onChange={handleChange} type="number"/>
           {/* <TextField id="filled-basic" label="Estimate USD" variant="filled" />
           <p />
            */}
@@ -113,7 +120,7 @@ export const HomeView: FC = ({ }) => {
           <p>estimate to usd</p>
         </h4>
           {/* <Button onClick={handleClose}>Convert</Button> */}
-          <SendTransaction />
+          <SendTransaction inputValue={inputValue}/>
         </Box>
       </Modal>
 
