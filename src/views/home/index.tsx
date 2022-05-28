@@ -1,5 +1,5 @@
 // Next, React
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, useRef } from 'react';
 import * as React from 'react';
 import Link from 'next/link';
 
@@ -44,8 +44,7 @@ export const HomeView: FC = ({ }) => {
   
   const balance = useUserSOLBalanceStore((s) => s.balance)
   const { getUserSOLBalance } = useUserSOLBalanceStore()
-
-  const [inputValue, setInputValue] = useState(null);
+  const valueRef = useRef(null);
 
   useEffect(() => {
     if (wallet.publicKey) {
@@ -61,11 +60,6 @@ export const HomeView: FC = ({ }) => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const handleChange = (event) => {
-    console.log(event.target.value);
-    setInputValue(event.target.value);
-  }
 
   return (
 
@@ -111,7 +105,7 @@ export const HomeView: FC = ({ }) => {
         <Box sx={{ ...style, width: 300 }}>
           <h2 id="child-modal-title">Input Solona to convert to USD</h2>
           <TextField 
-          id="outlined-basic" label="Input your sol want to convert" variant="outlined" onChange={handleChange} type="number"/>
+          id="outlined-basic" label="Input your sol want to convert" variant="outlined" inputRef={valueRef} type="number"/>
           {/* <TextField id="filled-basic" label="Estimate USD" variant="filled" />
           <p />
            */}
@@ -120,7 +114,7 @@ export const HomeView: FC = ({ }) => {
           <p>estimate to usd</p>
         </h4>
           {/* <Button onClick={handleClose}>Convert</Button> */}
-          <SendTransaction inputValue={inputValue}/>
+          <SendTransaction inputValue={valueRef}/>
         </Box>
       </Modal>
 

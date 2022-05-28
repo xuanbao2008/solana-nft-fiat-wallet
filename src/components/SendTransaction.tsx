@@ -4,8 +4,7 @@ import { WalletNotConnectedError } from '@solana/wallet-adapter-base';
 import { notify } from "../utils/notifications";
 import { Keypair, LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction, TransactionSignature } from '@solana/web3.js';
 
-
-export const SendTransaction: FC = ({inputValue}) => {
+export const SendTransaction = ({ inputValue }) => {
     const { connection } = useConnection();
     const { publicKey, sendTransaction } = useWallet();
 
@@ -16,8 +15,6 @@ export const SendTransaction: FC = ({inputValue}) => {
             return;
         }
 
-        console.log('inputValue: ', inputValue);
-
         // const pubKey = new PublicKey("7BzGMomgbswT6ynUmbkqA2mh2h9oGNgfKwfR2GrEmvRT");
         let signature: TransactionSignature = '';
         try {
@@ -26,6 +23,7 @@ export const SendTransaction: FC = ({inputValue}) => {
             const amount = 2_000_000;
 
             console.log(amount);
+            console.log('1111: ', inputValue.current.value);
 
             const transaction = new Transaction().add(
                 SystemProgram.transfer({
