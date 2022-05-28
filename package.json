@@ -21,6 +21,8 @@
     "@solana/wallet-adapter-wallets": "^0.15.3",
     "@solana/web3.js": "^1.31.0",
     "@tailwindcss/typography": "^0.5.0",
+    "axios": "^0.27.2",
+    "classnames": "^2.3.1",
     "daisyui": "^1.24.3",
     "immer": "^9.0.12",
     "next": "12.0.8",
@@ -28,9 +30,10 @@
     "next-transpile-modules": "^9.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-notifications": "^1.7.3",
+    "styled-components": "^5.3.5",
     "yarn": "^1.22.18",
-    "zustand": "^3.6.9",
-    "axios": "^0.27.2"
+    "zustand": "^3.6.9"
   },
   "devDependencies": {
     "@types/node": "17.0.10",
