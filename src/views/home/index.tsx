@@ -251,6 +251,8 @@ export const HomeView: FC = ({}) => {
           </CardActions>
         </Card>
       </div>
+
+      <div className="md:hero-content flex flex-col">Footer</div>
     </div>
   );
 };
