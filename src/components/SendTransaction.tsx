@@ -4,7 +4,7 @@ import { WalletNotConnectedError } from '@solana/wallet-adapter-base';
 import { notify } from "../utils/notifications";
 import { Keypair, LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction, TransactionSignature } from '@solana/web3.js';
  
-export const SendTransaction = ({ inputValue }) => {
+export const SendTransaction = ({ inputValue }: { inputValue?: any }) => {
     const { connection } = useConnection();
     const { publicKey, sendTransaction } = useWallet();
 
