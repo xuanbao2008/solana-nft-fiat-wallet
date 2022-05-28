@@ -55,13 +55,19 @@ export const HomeView: FC = ({ }) => {
 
   useEffect(() => {
 
-    axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=SOLUSDT`)
+    const performRequest = () => axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=SOLUSDT`)
     .then(response => {
       console.log("call sol price")
       const solPriceUsd = response.data.price;
       setSolPrice(solPriceUsd)
     })
 
+    const price = setInterval(performRequest, 1000) // Every 5 seconds?
+    performRequest(); // Initial request
+    return () => {
+      // Don't forget to cleanup the interval when this effect is cleaned up.
+      clearInterval(price)
+    }
 
     if (wallet.publicKey) {
       console.log(wallet.publicKey.toBase58())
@@ -121,18 +127,18 @@ export const HomeView: FC = ({ }) => {
         <Box sx={{ ...style, width: 300 }}>
           <h2 id="child-modal-title">Input Solona to convert to USD</h2>
           <TextField 
-          id="outlined-basic" label="Input your sol want to convert" variant="outlined" inputRef={valueRef} type="number"/>
+          id="outlined-basic" label="Input sol want to convert" variant="outlined" inputRef={valueRef} type="number"/>
           {/* <TextField id="filled-basic" label="Estimate USD" variant="filled" />
           <p />
            */}
-            <h4 className="md:w-full text-center text-slate-300 my-2"> 
-           Price at {time} </h4>
-           <h4 className="md:w-full text-center text-slate-300 my-2"> 
+            <h4 className="md:w-full text-center text-black my-2"> 
+           Price at {time} as Binace exchange</h4>
+           <h4 className="md:w-full text-center text-black my-2"> 
            SOL : UST  {solPrice} </h4>
-           <h4 className="md:w-full text-center text-slate-300 my-2">
+           <h4 className="md:w-full text-center text-black my-2">
              </h4>
           <p>estimate to usd</p>
-           <h4 className="md:w-full text-center text-slate-300 my-2">
+           <h4 className="md:w-full text-center text-black my-2">
            </h4>
           <p>estimate to usd</p>
         
