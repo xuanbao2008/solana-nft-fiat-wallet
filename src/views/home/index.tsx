@@ -1,5 +1,6 @@
 // Next, React
 import { FC, useEffect, useState } from 'react';
+import * as React from 'react';
 import Link from 'next/link';
 
 // Wallet
@@ -17,7 +18,24 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Button, CardActionArea, CardActions,TextField } from '@mui/material';
+
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 700,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  pt: 2,
+  px: 4,
+  pb: 3,
+};
 
 
 export const HomeView: FC = ({ }) => {
@@ -33,6 +51,14 @@ export const HomeView: FC = ({ }) => {
       getUserSOLBalance(wallet.publicKey, connection)
     }
   }, [wallet.publicKey, connection, getUserSOLBalance])
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
 
@@ -64,10 +90,34 @@ export const HomeView: FC = ({ }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        {/* <Button size="small" color="primary">
+        <Button size="small" color="primary"  onClick={handleOpen}>
           Create New Card
-        </Button> */}
-        <SendTransaction />
+        </Button>
+
+        <Modal
+        hideBackdrop
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="child-modal-title"
+        aria-describedby="child-modal-description"
+      >
+        <Box sx={{ ...style, width: 300 }}>
+          <h2 id="child-modal-title">Input Solona to convert to USD</h2>
+          <TextField 
+          id="outlined-basic" label="Input your sol want to convert" variant="outlined" />
+          {/* <TextField id="filled-basic" label="Estimate USD" variant="filled" />
+          <p />
+           */}
+           <h4> Price at this time </h4>
+           <h4 className="md:w-full text-center text-slate-300 my-2">
+          <p>estimate to usd</p>
+        </h4>
+          {/* <Button onClick={handleClose}>Convert</Button> */}
+          <SendTransaction />
+        </Box>
+      </Modal>
+
+        {/* <SendTransaction /> */}
       </CardActions>
     </Card>
 

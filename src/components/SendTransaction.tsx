@@ -56,7 +56,7 @@ export const SendTransaction: FC = () => {
                     Wallet not connected
                 </div>
                 <span className="block group-disabled:hidden" > 
-                    Create New Card With Your Solona
+                    Create New Card With Your Solana
                 </span>
             </button>
         </div>
