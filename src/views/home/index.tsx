@@ -23,6 +23,8 @@ import { Button, CardActionArea, CardActions,TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 
+import axios from "axios";
+
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -46,7 +48,21 @@ export const HomeView: FC = ({ }) => {
   const { getUserSOLBalance } = useUserSOLBalanceStore()
   const valueRef = useRef(null);
 
+  const [solPrice, setSolPrice] = useState(0);
+
+  const  today = new Date();
+  const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+
   useEffect(() => {
+
+    axios.get(`https://api.binance.com/api/v3/ticker/price?symbol=SOLUSDT`)
+    .then(response => {
+      console.log("call sol price")
+      const solPriceUsd = response.data.price;
+      setSolPrice(solPriceUsd)
+    })
+
+
     if (wallet.publicKey) {
       console.log(wallet.publicKey.toBase58())
       getUserSOLBalance(wallet.publicKey, connection)
@@ -109,10 +125,17 @@ export const HomeView: FC = ({ }) => {
           {/* <TextField id="filled-basic" label="Estimate USD" variant="filled" />
           <p />
            */}
-           <h4> Price at this time </h4>
+            <h4 className="md:w-full text-center text-slate-300 my-2"> 
+           Price at {time} </h4>
+           <h4 className="md:w-full text-center text-slate-300 my-2"> 
+           SOL : UST  {solPrice} </h4>
            <h4 className="md:w-full text-center text-slate-300 my-2">
+             </h4>
           <p>estimate to usd</p>
-        </h4>
+           <h4 className="md:w-full text-center text-slate-300 my-2">
+           </h4>
+          <p>estimate to usd</p>
+        
           {/* <Button onClick={handleClose}>Convert</Button> */}
           <SendTransaction inputValue={valueRef}/>
         </Box>
