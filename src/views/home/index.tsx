@@ -178,29 +178,33 @@ export const HomeView: FC = ({ }) => {
           <p>Pay anywhere and anytime with solana </p>
         </h4>
 
-      <Card sx={{ maxWidth: 345 }} >
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="140"
-          image="static/solona_visa.png"
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Solana Credit Card
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Create a credit card with instant time
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        {/* <Button size="small" color="primary"  onClick={connectToWallet}> */}
-        <WalletMultiButton className="text-black"/>
-        {/* </Button> */}
-      </CardActions>
-    </Card>
+        <Card sx={{ maxWidth: 345 }} >
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            height="140"
+            image="static/solona_visa.png"
+            alt="green iguana"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              Solana Credit Card
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Create a credit card with instant time
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          {/* <Button size="small" color="primary"  onClick={connectToWallet}> */}
+          <WalletMultiButton className="text-black"/>
+          {/* </Button> */}
+        </CardActions>
+      </Card>
+      </div>
+
+      <div className="md:hero-content flex flex-col">
+        Footer
       </div>
     </div>
   );
