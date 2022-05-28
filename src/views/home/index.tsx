@@ -25,6 +25,8 @@ import Modal from '@mui/material/Modal';
 
 import axios from "axios";
 
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -172,7 +174,7 @@ export const HomeView: FC = ({ }) => {
           Solana  Fiat  <span className='text-sm font-normal align-top text-slate-700'></span>
         </h1>
         <h4 className="md:w-full text-center text-slate-300 my-2">
-          <p>Simply the fastdddddddest way to get to pay with soest way to get to pay with soto pay with solana blockchain</p>
+          <p>Simply the fast way to get to pay with soest way to get to pay with soto pay with solana blockchain</p>
           <p>Pay anywhere and anytime with solana </p>
         </h4>
 
@@ -194,9 +196,9 @@ export const HomeView: FC = ({ }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary"  onClick={connectToWallet}>
-          Create New Card
-        </Button>
+        {/* <Button size="small" color="primary"  onClick={connectToWallet}> */}
+        <WalletMultiButton className="text-black"/>
+        {/* </Button> */}
       </CardActions>
     </Card>
       </div>
