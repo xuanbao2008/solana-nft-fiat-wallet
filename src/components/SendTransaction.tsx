@@ -3,9 +3,8 @@ import { FC, useCallback } from 'react';
 import { WalletNotConnectedError } from '@solana/wallet-adapter-base';
 import { notify } from "../utils/notifications";
 import { Keypair, LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction, TransactionSignature } from '@solana/web3.js';
-
-
-export const SendTransaction: FC = () => {
+ 
+export const SendTransaction = ({ inputValue }: { inputValue?: any }) => {
     const { connection } = useConnection();
     const { publicKey, sendTransaction } = useWallet();
 
@@ -21,10 +20,8 @@ export const SendTransaction: FC = () => {
         try {
             const destAddress = Keypair.generate().publicKey;
             // anything below this will fail, as this would be below the rent-exemption rate.
-            const amount = 2_000_000;
-
-            console.log(amount);
-
+            const amount = (inputValue.current.value * LAMPORTS_PER_SOL) 
+        
             const transaction = new Transaction().add(
                 SystemProgram.transfer({
                     fromPubkey: publicKey,
