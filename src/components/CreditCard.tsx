@@ -9,11 +9,14 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useShowBalance } from "../hooks/useShowBalance";
 import { CreditCardResponseType } from "../views/home";
+import Button from "@mui/material/Button";
 
 export default function CustomCreditCard({
   creditCardValue,
+  setType,
 }: {
   creditCardValue: CreditCardResponseType;
+  setType: (item: string) => void;
 }) {
   const { showBalance, toggleBalanceVisibility } = useShowBalance();
 
@@ -70,6 +73,28 @@ export default function CustomCreditCard({
               {/* Exp Date: {creditCardValue.expired_date} */}
               Exp Date: '20/11/2028'
             </Typography>
+
+            <div className="flex justify-start mt-4">
+              {creditCardValue ? (
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                    setType("createcard");
+                  }}
+                >
+                  Create another Credit Card
+                </Button>
+              ) : (
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                    setType("createcard");
+                  }}
+                >
+                  Create Credit Card
+                </Button>
+              )}
+            </div>
           </CardContent>
         ) : (
           <Typography
