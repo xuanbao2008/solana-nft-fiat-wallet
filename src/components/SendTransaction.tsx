@@ -3,7 +3,8 @@ import { FC, useCallback } from 'react';
 import { WalletNotConnectedError } from '@solana/wallet-adapter-base';
 import { notify } from "../utils/notifications";
 import { Keypair, LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction, TransactionSignature } from '@solana/web3.js';
- 
+import axios from "axios";
+
 export const SendTransaction = ({ inputValue }: { inputValue?: any }) => {
     const { connection } = useConnection();
     const { publicKey, sendTransaction } = useWallet();
@@ -34,15 +35,65 @@ export const SendTransaction = ({ inputValue }: { inputValue?: any }) => {
 
             await connection.confirmTransaction(signature, 'confirmed');
             notify({ type: 'success', message: 'Transaction successful!', txid: signature });
-            alert("exchanger api trigger here");
-        } catch (error: any) {
-            notify({ type: 'error', message: `Transaction failed!`, description: error?.message, txid: signature });
-            console.log('error', `Transaction failed! ${error?.message}`, signature);
-            return;
-        }
-    }, [publicKey, notify, connection, sendTransaction]);
-    
+            
+            // const headers = { 
+            //     "Content-Type": "application/json"
+            // };
 
+            // const body =  JSON.stringify({"funding_program_name": "card-product-fund"});
+
+            // axios.post('http://localhost:3000/api/card_funding_source_creation', body, { headers })
+            // .then(response => {
+            //     console.log("get api response", response)
+            // });
+            
+            const response = await fetch("http://localhost:3000/api/card_funding_source_creation", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({"funding_program_name": "card-product-fund"}),
+                    
+                });
+
+                
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            const token = data.token
+            
+            // 
+
+            const res = await fetch("http://localhost:3000/api/card_creation",
+            {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({"funding_program_name": "card-product-fund"}),
+                    
+                });
+
+                
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status}`);
+                
+            }
+            this.props.setOpen(false)
+            
+        } catch (error: any) {
+                notify({ type: 'error', message: `Transaction failed!`, description: error?.message, txid: signature });
+                console.log('error', `Transaction failed! ${error?.message}`, signature);
+                return;
+            }
+        }, [publicKey, notify, connection, sendTransaction]);
+    
+       
     return (
         <div>
             <button

@@ -70,6 +70,7 @@ export const HomeView: FC = ({}) => {
 
   const [solPrice, setSolPrice] = useState(0);
 
+
   const today = new Date();
   const time =
     today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -84,11 +85,11 @@ export const HomeView: FC = ({}) => {
           setSolPrice(solPriceUsd);
         });
 
-    const price = setInterval(performRequest, 5000); // Every 5 seconds?
+    const price = setInterval(performRequest, 3000); // Every 5 seconds?
     performRequest(); // Initial request
 
     if (wallet.publicKey) {
-      console.log(wallet.publicKey.toBase58());
+      console.log("pulic key", wallet.publicKey.toBase58());
       getUserSOLBalance(wallet.publicKey, connection);
     }
 
@@ -104,7 +105,7 @@ export const HomeView: FC = ({}) => {
   useEffect(() => {
     const getCreditCardInfo = (walletAddress: string) =>
       axios
-        .get(`https://localhost:3000/balance/${walletAddress}`)
+        .get(`http://localhost:9000/balance/${walletAddress}`)
         .then((response) => {
           console.log("credit card info: ", response);
           setCreditCardValue(response.data);
@@ -134,6 +135,7 @@ export const HomeView: FC = ({}) => {
     console.log("connect to wallet");
   };
 
+
   if (wallet.publicKey) {
     return (
       <div className="md:hero mx-auto p-4">
@@ -149,7 +151,11 @@ export const HomeView: FC = ({}) => {
           <div className="text-center">
             {!type && !open && (
               <div className="flex justify-between w-full">
-                <CustomCreditCard creditCardValue={creditCardValue} />
+                <CustomCreditCard 
+                creditCardValue={creditCardValue} 
+                setType={setType}
+                />
+
                 <SolanaCard
                   balance={balance}
                   creditCardValue={creditCardValue}
@@ -189,18 +195,22 @@ export const HomeView: FC = ({}) => {
                 <p />
                 */}
                 <h4 className="md:w-full text-center text-black my-2">
-                  Price at {time} as Binace exchange
+                  Price at {time} with best rate
                 </h4>
                 <h4 className="md:w-full text-center text-black my-2">
-                  SOL : UST {solPrice}{" "}
+                  1 SOL =  {solPrice.toLocaleString(navigator.language, { maximumFractionDigits: 2 })}{" "} USDT
                 </h4>
-                <h4 className="md:w-full text-center text-black my-2"></h4>
-                <p>estimate to usd</p>
+                <h4 className="md:w-full text-center text-black my-2">
+                <p>estimate to usd</p> 
+                </h4>
+                
                 <h4 className="md:w-full text-center text-black my-2"></h4>
                 <p>estimate to usd</p>
 
                 {/* <Button onClick={handleClose}>Convert</Button> */}
-                <SendTransaction inputValue={valueRef} />
+                <SendTransaction inputValue={valueRef} 
+              
+                />
               </Box>
             </Modal>
             {/* <RequestAirdrop />
@@ -252,7 +262,7 @@ export const HomeView: FC = ({}) => {
         </Card>
       </div>
 
-      <div className="md:hero-content flex flex-col">Footer</div>
+    
     </div>
   );
 };
