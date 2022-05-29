@@ -1,10 +1,14 @@
 import { FC } from "react";
-
+const divStyle = {
+    position:'absolute',
+   bottom:0,
+   width:'100%'
+  };
 
 
 export const Footer: FC = ({ }) => {
   return (
-	<footer class="p-4 bg-white rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-800">
+	<footer  style={divStyle} className="mx-auto  flex flex-row p-2 text-center items-center footer bg-neutral text-neutral-content">
     <div class="sm:flex sm:items-center sm:justify-between">
         <a href="https://solana.com/">
             <img src="https://prcdn.freetls.fastly.net/release_image/36801/28/36801-28-02a3e240e2e7e1657a3bbd4bd3eb211f-800x460.png?format=jpeg&auto=webp&quality=85&width=1950&height=1350&fit=bounds" class="mr-3 h-8" alt="Flowbite Logo" />
