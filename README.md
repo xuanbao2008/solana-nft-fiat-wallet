@@ -1,23 +1,28 @@
 # Acknowledgement
-- This Dapp UI & core features are inspired by awesome tutorial from Solana guys' [tutorial](https://solana.com/news/solana-scaffold-part-1-wallet-adapter/)
-- Thanks to valuable advices from my advisor & co-workers who help shape the production of this project within limited hackathon timeframe
-- Thanks to the awesomeness of Solana blockchain & its documentation
+This App this for Solana Tokyo Hackathon Demo. 
+Which easy, simple convert Sol to Fiat Visa just one lick. 
 
 ---
 
-# Solana-fiat dApp wallet
+# Solana-fiat 
 
 It takes advantages of Solana fast transaction speed to make (nearly) realtime fiat virtual card issuance come true. Having said that, Solana in specific, is helping the whole Blochain ecosystem moving forward with more practical & useful application.
 
-Responsive                     |  Desktop
-:-------------------------:|:-------------------------:
-![](scaffold-mobile.png)  |  ![](scaffold-desktop.png)
+### Problem 
+- Create a visa card with bank taking a long time and many requirements, step verify 
+- Lost a visa card how to return? (call to bank, not sure 100% return)
+- Buy some service which you dont want bank know your transaction or some website which you cannot trust 100%
+- Send Gifts to your friends, family, or you are the company and send to all your customers 
+
+### Our solution 
+- Create a visa card instantly just connect to your solana wallet 
+- Create multiple visa card with one same wallets, delete the visa card if you dont want to use
+- Get back till 1% when you success create a new transaction or new card (you get our token is created based on solan, able to convert to solana)
 
 ## Getting Started
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-The responsive version for wallets and wallet adapter may not function or work as expected for mobile based on plugin and wallet compatibility. For more code examples and implementations please visit the [Solana Cookbook](https://solanacookbook.com/)
+- From backend side: using golang 
+- 
 
 ## Installation
 
@@ -39,11 +44,6 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
 ## Features
 
@@ -84,23 +84,11 @@ Anyone is welcome to create an issue to build, discuss or request a new feature 
 
 If submitting a feature, please reference the project structure shown above and try to follow the overall architecture and style presented in the existing scaffold.
 
-### Committing
+### future 
+- Support other blockchain like DOT
+- Create our own token base on solana 
+- Support stake in our wallet 
+- Revert your visa balance to Sol if you dont want to use visa card any more. 
+- Support solana pay (dont need to use visa card, still able to pay)
 
-To choose a task or make your own, do the following:
 
-1. [Add an issue](https://github.com/solana-dev-adv/solana-dapp-next/issues/new) for the task and assign it to yourself or comment on the issue
-2. Make a draft PR referencing the issue.
-
-The general flow for making a contribution:
-
-1. Fork the repo on GitHub
-2. Clone the project to your own machine
-3. Commit changes to your own branch
-4. Push your work back up to your fork
-5. Submit a Pull request so that we can review your changes
-
-**NOTE**: Be sure to merge the latest from "upstream" before making a 
-pull request!
-
-You can find tasks on the [project board](https://github.com/solana-dev-adv/solana-dapp-next/projects/1) 
-or create an issue and assign it to yourself.
