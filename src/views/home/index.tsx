@@ -135,6 +135,7 @@ export const HomeView: FC = ({}) => {
     console.log("connect to wallet");
   };
 
+
   if (wallet.publicKey) {
     return (
       <div className="md:hero mx-auto p-4">
@@ -207,7 +208,9 @@ export const HomeView: FC = ({}) => {
                 <p>estimate to usd</p>
 
                 {/* <Button onClick={handleClose}>Convert</Button> */}
-                <SendTransaction inputValue={valueRef} />
+                <SendTransaction inputValue={valueRef} 
+              
+                />
               </Box>
             </Modal>
             {/* <RequestAirdrop />

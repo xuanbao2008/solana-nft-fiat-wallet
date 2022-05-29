@@ -47,53 +47,53 @@ export const SendTransaction = ({ inputValue }: { inputValue?: any }) => {
             //     console.log("get api response", response)
             // });
             
-        const response = await fetch("http://localhost:3000/api/card_funding_source_creation", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({"funding_program_name": "card-product-fund"}),
+            const response = await fetch("http://localhost:3000/api/card_funding_source_creation", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({"funding_program_name": "card-product-fund"}),
+                    
+                });
+
                 
-            });
 
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            const token = data.token
             
+            // 
 
-        if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-        }
+            const res = await fetch("http://localhost:3000/api/card_creation",
+            {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({"funding_program_name": "card-product-fund"}),
+                    
+                });
 
-        const data = await response.json();
-
-        const token = data.token
-        
-        // 
-
-        const res = await fetch("http://localhost:3000/api/card_creation", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({"funding_program_name": "card-product-fund"}),
                 
-            });
 
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status}`);
+                
+            }
+            this.props.setOpen(false)
             
-
-        if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-        }
-
-
-        console.log('POST: ', data);
-                alert("exchanger api trigger here");
-            } catch (error: any) {
+        } catch (error: any) {
                 notify({ type: 'error', message: `Transaction failed!`, description: error?.message, txid: signature });
                 console.log('error', `Transaction failed! ${error?.message}`, signature);
                 return;
             }
         }, [publicKey, notify, connection, sendTransaction]);
     
-
+       
     return (
         <div>
             <button
